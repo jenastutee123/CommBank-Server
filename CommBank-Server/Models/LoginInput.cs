@@ -9,12 +9,16 @@ interface ILoginInput
 
 public class LoginInput : ILoginInput
 {
+    public LoginInput()
+    {
+    }
+
     public LoginInput(string email, string password)
     {
         Email = email;
         Password = password;
     }
 
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 }

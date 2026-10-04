@@ -1,4 +1,5 @@
-﻿using CommBank.Controllers;
+﻿using System.Text.Json;
+using CommBank.Controllers;
 using CommBank.Services;
 using CommBank.Models;
 using CommBank.Tests.Fake;
@@ -70,5 +71,15 @@ public class GoalControllerTests
         // Act
         
         // Assert
+    }
+
+    [Fact]
+    public void IconIsIncludedInJson()
+    {
+        var goal = new Goal { Icon = "home" };
+        var json = JsonSerializer.Serialize(goal, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        using var document = JsonDocument.Parse(json);
+
+        Assert.Equal("home", document.RootElement.GetProperty("icon").GetString());
     }
 }
